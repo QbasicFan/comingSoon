@@ -50,5 +50,6 @@ python manage.py makemigrations comingSoon
 
 python manage.py migrate comingSoon
 
-
+6) 
+add extra/w3.css in static css folder
 
