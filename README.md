@@ -31,11 +31,17 @@ git clone https://github.com/QbasicFan/comingSoon
 pip install django-widget-tweaks
 
 3)
+
 setting (root app)
 INSTALLED_APPS = (
+
     "widget_tweaks",
+    
     "comingSoon",
+    
     ....
+    
+    
 4)
 url("^$", include("comingSoon.urls")),
 
