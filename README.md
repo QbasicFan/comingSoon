@@ -47,6 +47,7 @@ url("^$", include("comingSoon.urls")),
 
 5) 
 python manage.py makemigrations comingSoon
+
 python manage.py migrate comingSoon
 
 
