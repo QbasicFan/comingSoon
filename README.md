@@ -30,8 +30,12 @@ git clone https://github.com/QbasicFan/comingSoon
 2)
 pip install django-widget-tweaks
 
-3)
 
+3)
+pip install django-tracking2
+(https://github.com/bruth/django-tracking2)
+
+4)
 setting (root app)
 INSTALLED_APPS = (
 
@@ -39,17 +43,33 @@ INSTALLED_APPS = (
     
     "comingSoon",
     
+    "tracking",
+    
     ....
-    
-    
-4)
-url("^$", include("comingSoon.urls")),
 
-5) 
+5)
+MIDDLEWARE_CLASSES = (
+    ...
+    
+    'tracking.middleware.VisitorTrackingMiddleware',
+    
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    
+    ...
+    
+)
+
+    
+6)
+    url("^$", include("comingSoon.urls")),
+    
+    url(r'^tracking/', include('tracking.urls')),
+
+7) 
 python manage.py makemigrations comingSoon
 
 python manage.py migrate comingSoon
 
-6) 
+8) 
 add extra/w3.css in static css folder
 
