@@ -73,6 +73,14 @@ python manage.py migrate comingSoon
 8) 
 add extra/w3.css in static css folder
 
+9)
+python manage.py makemigrations comingSoon
+
+python manage.py migrate comingSoon
+
+
+
+
 //////////////////////////////////////////////////////
 
 404 page 
