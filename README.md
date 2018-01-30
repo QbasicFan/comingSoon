@@ -74,8 +74,12 @@ python manage.py migrate comingSoon
 add extra/w3.css in static css folder
 
 //////////////////////////////////////////////////////
+
 404 page 
+
 in root url
+
+from comingSoon import views
 
 url(r'.*?/$', views.handler404, name='handler404'),
 
