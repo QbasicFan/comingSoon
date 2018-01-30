@@ -32,3 +32,8 @@ def index(request):
         form = eMailForm()
         context = {'form':form,"image1":image1,"image2":image2,"image3":image3,"cDate":cDate,"email":email , "bkg":bkg}
    return render(request, 'vital/index.html', context )
+
+##############################################
+
+def handler404(request):
+    return render(request,'vital/error.html', {})
