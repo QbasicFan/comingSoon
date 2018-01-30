@@ -73,3 +73,9 @@ python manage.py migrate comingSoon
 8) 
 add extra/w3.css in static css folder
 
+//////////////////////////////////////////////////////
+404 page 
+in root url
+
+url(r'.*?/$', views.handler404, name='handler404'),
+
