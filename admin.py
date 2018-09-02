@@ -2,9 +2,10 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import mainImage , comingDate , eMail , background
+from .models import comingDate , eMail , frontErrorPage , SBtn , backgroundImage
 
-admin.site.register(mainImage)
 admin.site.register(comingDate)
 admin.site.register(eMail)
-admin.site.register(background)
+admin.site.register(frontErrorPage)
+admin.site.register(SBtn)
+admin.site.register(backgroundImage)
