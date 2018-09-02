@@ -23,6 +23,8 @@ Change sections background images
 ///////////////////////////////////////////////////////////////
                   Installation 
 ///////////////////////////////////////////////////////////////
+0)https://github.com/bruth/django-tracking2
+0)https://pypi.org/project/django-widget-tweaks/
 
 1)
 git clone https://github.com/QbasicFan/comingSoon
