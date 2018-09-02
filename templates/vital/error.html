@@ -1,1 +1,53 @@
-error
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+<title>888vital coming soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family={% for p in bkg %}{{ p.errorTitleFont }}{% endfor %}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/5.0.0/sanitize.min.css">
+
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: {% for p in bkg %}{{ p.errorTitleFont }}{% endfor %}, sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+
+/* background image */
+.bg {
+    {% for p in bkg %}
+    background-image: url('{{ p.errorImage.url }}') ;
+    {% endfor %}
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+
+</style>
+<body class="bg">
+<div class="w3-center w3-jumbo w3-orange">
+    888VITAL , page not found
+</div>
+
+
+<div class="w3-center {% for p in bkg %}{{ p.errorTextColor }}{% endfor %} {% for p in bkg %}{{ p.errorTextBgColor }}{% endfor %} {% for p in bkg %}{{ p.errorTitleSize }}{% endfor %}">
+    {% for p in bkg %}{{ p.errorText }}{% endfor %}
+</div>
+
+<div class="w3-center w3-jumbo w3-black">
+    Back to <a href="/">888vital.com</a>
+</div>
+
+</body>
+</html>
