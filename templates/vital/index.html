@@ -5,16 +5,22 @@
 <title>888vital coming soon</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="{% static 'css/w3.css' %}">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/5.0.0/sanitize.min.css">
+
+<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+<link rel="stylesheet" href="{% static "css/TimeCircles.css" %}">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family={% for p in bkg %}{{ p.textTitleFont }}{% endfor %}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 
 
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body,h1,h2,h3,h4,h5,h6 {font-family: {% for p in bkg %}{{ p.textTitleFont }}{% endfor %} , sans-serif;}
 body, html {
     height: 100%;
     color: #777;
@@ -22,24 +28,26 @@ body, html {
 }
 
 .w3-transparentGray {
-    background: rgba(40, 40, 40, 0.6);
+    background: rgba(40, 40, 40, 0.8);
 }
 
 .w3-transparentPurple {
-    background: rgba(231, 123, 237, 0.2);
+    background: rgba(35, 35, 35, 0.7);
 }
 
-input[type=text] {
-    background-color: rgb(45, 23, 46);
-    color : #fce;
-    border: 2px solid #fce;
+input[type=text], input[type=email] , button {
+    background-color: rgb(255, 165, 0);
+    color : rgb(15, 18, 18);
+    border: 2px solid rgb(255, 209, 95);
 }
 
 
-input[type=text]:focus {
-    background-color: rgb(38, 15, 37);
-    border: 10px solid rgb(106, 90, 205);
-    box-shadow: 0 0 10px 10px rgb(31, 48, 112);
+input[type=text]:focus , input[type=email]:focus , button:focus {
+    background-color: rgb(255, 96, 0);
+    border: 10px solid rgb(255, 156, 49);
+    box-shadow: 0 0 10px 10px rgb(255, 209, 95);
+
+    color: black;
 
     -webkit-transition: box-shadow 1s; /* Safari */
     -webkit-transition: border 1s; /* Safari */
@@ -50,9 +58,9 @@ input[type=text]:focus {
 }
 
 img:hover {
-    background-color: rgb(38, 15, 37);
-    border: 10px solid rgb(106, 90, 205);
-    box-shadow: 0 0 10px 10px rgb(31, 48, 112);
+    background-color: rgb(255, 96, 0);
+    border: 10px solid rgb(255, 156, 49);
+    box-shadow: 0 0 10px 10px rgb(255, 209, 95);
 
     -webkit-transition: box-shadow 1s; /* Safari */
     -webkit-transition: border 1s; /* Safari */
@@ -63,9 +71,9 @@ img:hover {
 }
 
 .lima:hover {
-    background-color: rgb(38, 15, 37);
-    border: 10px solid rgb(106, 90, 205);
-    box-shadow: 0 0 10px 10px rgb(31, 48, 112);
+    background-color: rgb(255, 96, 0);
+    border: 10px solid rgb(255, 156, 49);
+    box-shadow: 0 0 10px 10px rgb(255, 209, 95);
 
     -webkit-transition: box-shadow 1s; /* Safari */
     -webkit-transition: border 1s; /* Safari */
@@ -75,319 +83,233 @@ img:hover {
     transition: border 1s;
 }
 
-.limo {
-    color: white;
-}
 
-.limo:hover {
-    width: 150px;
-    height: 140px;
-    background: black;
+.bgimg {
     {% for p in bkg %}
-    background-image: url('{{ p.menuImage.url }}') ;
+    background-image: url('{{ p.frontImage.url }}') ;
     {% endfor %}
-    color: purple;
-
-    -webkit-transition-timing-function: linear;
-
-    -webkit-transition: color 2s; /* Safari */
-    transition: color 2s;
-}
-
-/* Create a Parallax Effect */
-.bgimg-1, .bgimg-2, .bgimg-3 {
-    background-attachment: fixed;
+    min-height: 100%;
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* First image (Logo. Full height) */
-.bgimg-1 {
-    {% for p in image1 %}
-    background-image: url('{{ p.image.url }}');
-    {% endfor %}
-    min-height: 100%;
-
-}
-
-/* Second image (Portfolio) */
-.bgimg-2 {
-    {% for p in image2 %}
-    background-image: url('{{ p.image.url }}') ;
-    {% endfor %}
-    min-height: 100%;
-}
-
-/* Third image (Contact) */
-.bgimg-3 {
-    {% for p in image3 %}
-    background-image: url('{{ p.image.url }}');
-    {% endfor %}
-    min-height: 100%;
-}
-
-.w3-wide {letter-spacing: 10px;}
-.w3-hover-opacity {cursor: pointer;}
-
-/* Turn off parallax scrolling for tablets and phones
-@media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3 {
-        background-attachment: scroll;
-    }
-}
-*/
-
-/* background image */
-.bgmenu {
-    {% for p in bkg %}
-    background-image: url('{{ p.menuImage.url }}') ;
-    {% endfor %}
-    background-repeat:repeat;
-}
-
-.footmenu {
-    {% for p in bkg %}
-    background-image: url('{{ p.footerImage.url }}') ;
-    {% endfor %}
-    background-repeat:no-repeat;
-    background-size:100% 100%;
-}
-
-
 </style>
-<body class="w3-black">
-
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar" id="myNavbar" onmouseout="showJojo(-1)">
-    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-      <i class="fa fa-bars"></i>
-    </a>
-    <a href="/" class="w3-bar-item limo" onmouseover="showJojo(0)"><span id="menu1"><i class="fa fa-home"></i> HOME</span><p id="jojo0"></p></a>
-    <a href="#hope" class="w3-bar-item limo w3-hide-small" onmouseover="showJojo(1)"><span id="menu2"><i class="fa fa-expand"></i> HOPE</span><p id="jojo1"></p></a>
-    <a href="#help" class="w3-bar-item limo w3-hide-small" onmouseover="showJojo(2)"><span id="menu3"><i class="fa fa-medkit"></i> HELP</span><p id="jojo2"></p></a>
-    <a href="#contact" class="w3-bar-item limo w3-hide-small" onmouseover="showJojo(3)"><span id="menu4"><i class="fa fa-envelope"></i> CONTACT</span><p id="jojo3"></p></a>
-    <span class="w3-right w3-hover-sepia w3-bar-item w3-hide-small">
-
-      <span id="comso">Coming Soon</span>
-
-    </span>
-  </div>
-
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium bgmenu">
-    <a href="#hope" class="w3-bar-item w3-button" onclick="toggleFunction()">HOPE</a>
-    <a href="#help" class="w3-bar-item w3-button" onclick="toggleFunction()">HELP</a>
-    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
-    <span class="w3-bar-item w3-button">Coming Soon</span>
-  </div>
-</div>
-
-<!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-  <div class="w3-display-middle" >
-          <span class="{% for p in image1 %}{{ p.textTitleSize }}{% endfor %} w3-text-white w3-wide w3-transparentGray">{% for p in image1 %}{{ p.textTitle }}{% endfor %}</span>
-    <p class="{% for p in image1 %}{{ p.textSize }}{% endfor %} w3-transparentGray w3-animate-top">{% for p in image1 %}{{ p.text }}{% endfor %}</p>
-        <p class="w3-center w3-padding-large  w3-large w3-wide w3-animate-opacity">Coming soon,<br> {% for p in cDate %}{{ p.date|timeuntil }}<br>{% endfor %}</p>
-
-  </div>
-</div>
-
-
-<!-- Second Parallax Image with Portfolio Text -->
-<div class="bgimg-2 w3-display-container w3-opacity-min" id="hope">
-  <div class="w3-display-middle">
-    <span class="{% for p in image2 %}{{ p.textTitleSize }}{% endfor %} w3-text-white w3-wide w3-transparentGray">{% for p in image2 %}{{ p.textTitle }}{% endfor %}</span>
-    <p class="{% for p in image2 %}{{ p.textSize }}{% endfor %} w3-transparentGray">{% for p in image2 %}{{ p.text }}{% endfor %}</p>
-  </div>
-</div>
-
-
-<!-- Third Parallax Image with Portfolio Text -->
-<div class="bgimg-3 w3-display-container w3-opacity-min" id="help">
-  <div class="w3-display-middle">
-     <span class="{% for p in image3 %}{{ p.textTitleSize }}{% endfor %} w3-text-white w3-wide w3-transparentGray">{% for p in image3 %}{{ p.textTitle }}{% endfor %}</span>
-     <p class="{% for p in image3 %}{{ p.textSize }}{% endfor %} w3-transparentGray">{% for p in image3 %}{{ p.text }}{% endfor %}</p>
-  </div>
-</div>
-
-<!-- Container (Contact Section) -->
-<div class="footmenu">
-<div class="w3-content w3-container w3-padding-64 " id="contact">
-  <h3 class="w3-center">888vital is Coming Soon</h3>
-  <p class="w3-center"><em>LET GET IN TOUCH !</em></p>
 
 
 
+<body class="w3-black" onload="roll()">
 
-  <div class="w3-center w3-padding-32 w3-section">
-<div class="w3-row-padding">
-<div class="w3-half">
-    <img src="{% for p in bkg %}{{ p.image.url }}{% endfor %}" class="w3-image">
-</div>
+  <div id="id01" class=" w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-black">
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <h2>Receive Updates</h2>
+      </header>
 
-    <div class="w3-half w3-transparentPurple">
-      <div class="w3-center w3-large w3-margin-bottom ">
+<div  class="bgimg">
 <br>
-<hr>
-<h2>Thank you in advance</h2>
-<br><br>
 <form action="" method="POST">
 	 {% csrf_token %}
-    <span>{% render_field form.name class+="w3-input" placeholder="Your name" %}</span><br>
-    <span>{% render_field form.email class+="w3-input" placeholder="Your email" %}</span><br>
+	 <div class="w3-row-padding ">
+<div class="w3-half">
+    <span>{% render_field form.name class+="w3-input" placeholder="Your name" %}</span>
+</div>
+<div class="w3-half">
+    <span>{% render_field form.email class+="w3-input" placeholder="Your email" %}</span>
+</div>
+</div>
     <span>{% render_field form.message class+="w3-input" %}</span><br>
-    <button type="submit" class="w3-button w3-round-xlarge w3-light-gray"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Send</button>
+    <button type="submit" class="w3-button w3-round-xlarge w3-light-gray w3-center w3-block"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Send</button>
 </form>
 {{ jack }}
 <br>
-<hr>
+</div>
 
-    <div class="w3-center">
-
-  <div class="w3-xlarge w3-section">
-    <i class="fa fa-facebook-official lima"></i>
-    <i class="fa fa-instagram lima"></i>
-    <i class="fa fa-snapchat lima"></i>
-    <i class="fa fa-pinterest-p lima"></i>
-    <i class="fa fa-twitter lima"></i>
-    <i class="fa fa-linkedin lima"></i>
+      <footer class="w3-container w3-black">
+        <p>Thank You</p>
+      </footer>
+    </div>
   </div>
 
-</div>
+  <!-- -->
 
-<br>
-    </div>
+<div id="toBkg" class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+
+  <div class="w3-display-middle w3-hide-small">
+      <div class="w3-center">
+   <h1 class="{% for p in bkg %}{{ p.frontTextColor }}{% endfor %} {% for p in bkg %}{% endfor %} {% for p in bkg %}{{ p.textTitleSize }}{% endfor %} w3-transparentGray w3-animate-top ">{% for p in bkg %}{{ p.frontText }}{% endfor %}</h1>
+<p class=" {% for p in bkg %}{% endfor %} w3-transparentPurple w3-animate-top " style="color:orange;font-size:150%">{% for p in bkg %}{{ p.aboutText }}{% endfor %}</p>
     </div>
 
-    </div>
-</div>
+<div id="DateCountdown" data-date="{% for p in cDate %}{{ p.date|date:"Y-m-d h:m:s" }}{% endfor %}" style="width: 100%;"></div>
+
 
 <div class="w3-center">
-  <p>888vital 2018</p>
+    <br>
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-round-xlarge w3-orange lima">Keep me Updated</button>
 </div>
 
+
+
+
 </div>
-<!-- Footer -->
 
 
-<!-- Add Google Maps -->
+
+
+  <div class="w3-content w3-hide-medium w3-hide-large">
+      <div class="w3-center">
+   <h1 class="{% for p in bkg %}{{ p.frontTextColor }}{% endfor %} {% for p in bkg %}{% endfor %} {% for p in bkg %}{{ p.textTitleSize }}{% endfor %} w3-transparentGray w3-animate-top ">{% for p in bkg %}{{ p.frontText }}{% endfor %}</h1>
+<p class=" {% for p in bkg %}{% endfor %} {% for p in bkg %}{{ p.aboutTitleSize }}{% endfor %} w3-transparentPurple w3-animate-top " style="color:orange;">{% for p in bkg %}{{ p.aboutText }}{% endfor %}</p>
+
+    </div>
+
+
+<div id="DateCountdown1" data-date="{% for p in cDate %}{{ p.date|date:"Y-m-d h:m:s" }}{% endfor %}" style="width: 100%;"></div>
+
+
+
+<div class="w3-center">
+  <br>
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-round-xlarge w3-orange lima">Keep me Updated</button>
+</div>
+
+
+</div>
+
+
+
+
+
+
+  <div class="w3-display-bottomleft w3-padding-large">
+{% for p in SBtn %}
+
+    {% if p.facebook %}<a href="{{ p.fbLink }}" target="_blank"><i class="fa fa-facebook-official lima"></i></a>{% endif %}
+    {% if p.instagram %}<a href="{{ p.instagramLink }}" target="_blank"><i class="fa fa-instagram lima"></i></a>{% endif %}
+    {% if p.snapchat %}<a href="{{ p.snapchatLink }}" target="_blank"><i class="fa fa-snapchat lima"></i></a>{% endif %}
+    {% if p.pinterest %}<a href="{{ p.pinterestLink }}" target="_blank"><i class="fa fa-pinterest-p lima"></i></a>{% endif %}
+    {% if p.twitter %}<a href="{{ p.twitterLink }}" target="_blank"><i class="fa fa-twitter lima"></i></a>{% endif %}
+    {% if p.linkedin %}<a href="{{ p.linkedinLink }}" target="_blank"><i class="fa fa-linkedin lima"></i></a>{% endif %}
+    {% if p.delicious %}<a href="{{ p.deliciousLink }}" target="_blank"><i class="fa fa-delicious lima"></i></a>{% endif %}
+    {% if p.github %}<a href="{{ p.githubLink }}" target="_blank"><i class="fa fa-github lima"></i></a>{% endif %}
+    {% if p.google %}<a href="{{ p.googleLink }}" target="_blank"><i class="fa fa-google-plus lima"></i></a>{% endif %}
+    {% if p.lastfm %}<a href="{{ p.lastfmLink }}" target="_blank"><i class="fa fa-lastfm lima"></i></a>{% endif %}
+    {% if p.qq %}<a href="{{ p.qqLink }}" target="_blank"><i class="fa fa-qq lima"></i></a>{% endif %}
+    {% if p.soundcloud %}<a href="{{ p.soundcloudLink }}" target="_blank"><i class="fa fa-soundcloud lima"></i></a>{% endif %}
+    {% if p.steam %}<a href="{{ p.steamLink }}" target="_blank"><i class="fa fa-steam lima"></i></a>{% endif %}
+    {% if p.youtube %}<a href="{{ p.youtubeLink }}" target="_blank"><i class="fa fa-youtube-square lima"></i></a>{% endif %}
+    {% if p.fcc %}<a href="{{ p.fccLink }}" target="_blank"><i class="fa fa-free-code-camp lima"></i></a>{% endif %}
+    {% if p.quora %}<a href="{{ p.quoraLink }}" target="_blank"><i class="fa fa-quora lima"></i></a>{% endif %}
+    {% if p.reddit %}<a href="{{ p.redditLink }}" target="_blank"><i class="fa fa-reddit lima"></i></a>{% endif %}
+    {% if p.telegram %}<a href="{{ p.telegramLink }}" target="_blank"><i class="fa fa-telegram lima"></i></a>{% endif %}
+    {% if p.vine %}<a href="{{ p.vineLink }}" target="_blank"><i class="fa fa-vine lima"></i></a>{% endif %}
+    {% if p.amazon %}<a href="{{ p.amazonLink }}" target="_blank"><i class="fa fa-amazon lima"></i></a>{% endif %}
+    {% if p.codepen %}<a href="{{ p.codepenLink }}" target="_blank"><i class="fa fa-codepen lima"></i></a>{% endif %}
+    {% if p.etsy %}<a href="{{ p.etsyLink }}" target="_blank"><i class="fa fa-etsy lima"></i></a>{% endif %}
+    {% if p.skype %}<a href="{{ p.skypeLink }}" target="_blank"><i class="fa fa-skype lima"></i></a>{% endif %}
+    {% if p.whatsapp %}<a href="{{ p.whatsappLink }}" target="_blank"><i class="fa fa-whatsapp lima"></i></a>{% endif %}
+    {% if p.vimeo %}<a href="{{ p.vimeoLink }}" target="_blank"><i class="fa fa-vimeo lima"></i></a>{% endif %}
+    {% if p.stack %}<a href="{{ p.stackLink }}" target="_blank"><i class="fa fa-stack-overflow lima"></i></a>{% endif %}
+    {% if p.jsfiddle %}<a href="{{ p.jsfiddleLink }}" target="_blank"><i class="fa fa-jsfiddle lima"></i></a>{% endif %}
+
+{% endfor %}
+
+
+
+
+
+
+  </div>
+</div>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="{% static "js/TimeCircles.js" %}"></script>
 <script>
+var index = 0;
+var kkk = [];
 
 
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
+{% for p in bkgImg %}
+kkk.push('{{ p.image.url }}');
+{% endfor %}
+
+function roll(){
+    index++;
+    if (index > kkk.length-1) {index = 0}
+     document.getElementById("toBkg").style.backgroundImage = "url('"+kkk[index]+"')";
+    setTimeout(roll, 3000); // Change image every 2 seconds
 }
-
-// Change style of navbar on scroll
-window.onscroll = function() {myFunction()};
-function myFunction() {
-    var navbar = document.getElementById("myNavbar");
-    var coming = document.getElementById("comso");
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " bgmenu";
-        coming.innerHTML = "<i class='fa fa-hand-o-right' aria-hidden='true'></i> Coming Soon <i class='fa fa-hand-o-left' aria-hidden='true'></i>";
-        coming.className = "w3-animate-zoom w3-large w3-text-red"
-    } else {
-        navbar.className = navbar.className.replace(" w3-card w3-animate-top bgmenu", "");
-        coming.innerHTML = "Coming Soon"
-        coming.className = "w3-animate-bottom w3-text-white"
-    }
-}
-
-// Used to toggle the menu on small screens when clicking on the menu button
-function toggleFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-
-
-function showJojo(n){
-
-    var im0 = document.getElementById("jojo0");
-    var im1 = document.getElementById("jojo1");
-    var im2 = document.getElementById("jojo2");
-    var im3 = document.getElementById("jojo3");
-
-    var menu1 = document.getElementById("menu1");
-    var menu2 = document.getElementById("menu2");
-    var menu3 = document.getElementById("menu3");
-    var menu4 = document.getElementById("menu4");
-
-
-    if (n === 0){
-    im0.innerHTML = "<div class='w3-center'><i class='w3-center fa fa-refresh fa-spin fa-3x fa-fw w3-jumbo'></i></div>";
-    im1.innerHTML = "";
-    im2.innerHTML = "";
-    im3.innerHTML = "";
-
-    menu1.innerHTML = "HOME";
-    menu1.className = "";
-
-    }
-    else if (n === 1){
-    im0.innerHTML = "";
-    im1.innerHTML = "<div class='w3-center'><i class='fa fa-expand w3-jumbo'></i></div>";
-    im2.innerHTML = "";
-    im3.innerHTML = "";
-
-    menu2.innerHTML = "HOPE";
-    menu2.className = "";
-
-    }
-    else if (n === 2){
-    im0.innerHTML = "";
-    im2.innerHTML = "<div class='w3-center'><i class='fa fa-medkit w3-jumbo'></i></div>";
-    im1.innerHTML = "";
-    im3.innerHTML = "";
-
-    menu3.innerHTML = "HELP";
-    menu3.className = "";
-
-    }
-    else if (n === 3){
-    im0.innerHTML = "";
-    im3.innerHTML = "<div class='w3-center'><i class='fa fa-envelope-open w3-jumbo'></i></div>";
-    im2.innerHTML = "";
-    im1.innerHTML = "";
-
-    menu4.innerHTML = "CONTACT";
-    menu4.className = "";
-    }else {
-    im0.innerHTML = "";
-    im1.innerHTML = "";
-    im2.innerHTML = "";
-    im3.innerHTML = "";
-
-    menu1.innerHTML = "<i class='fa fa-home'></i> HOME";
-    menu1.className = "w3-text-white";
-
-    menu2.innerHTML = "<i class='fa fa-expand'></i> HOPE";
-    menu2.className = "w3-text-white";
-
-    menu3.innerHTML = "<i class='fa fa-medkit'></i> HELP";
-    menu3.className = "w3-text-white";
-
-    menu4.innerHTML = "<i class='fa fa-envelope'></i> CONTACT";
-    menu4.className = "w3-text-white";
-
-    }
-
-}
-
-
-
 </script>
 
+<script>
+
+var colDays = "#ccc222";
+var colHours = "#99CCFF";
+var colMinutes = "#BBFFBB";
+var colSeconds = "#FF9999";
+var colCircle = "#000000";
+
+$("#DateCountdown").TimeCircles({
+    "animation": "smooth",
+    "bg_width": 1.4,
+    "fg_width": 0.043333333333333335,
+    "circle_bg_color": colCircle,
+    "time": {
+        "Days": {
+            "text": "Days",
+            "color": colDays,
+            "show": true
+        },
+        "Hours": {
+            "text": "Hours",
+            "color": colHours,
+            "show": true
+        },
+        "Minutes": {
+            "text": "Minutes",
+            "color": colMinutes,
+            "show": true
+        },
+        "Seconds": {
+            "text": "Seconds",
+            "color": colSeconds,
+            "show": true
+        }
+    }
+});
+
+$("#DateCountdown1").TimeCircles({
+    "animation": "smooth",
+    "bg_width": 1.4,
+    "fg_width": 0.043333333333333335,
+    "circle_bg_color": colCircle,
+    "time": {
+        "Days": {
+            "text": "Days",
+            "color": colDays,
+            "show": true
+        },
+        "Hours": {
+            "text": "Hours",
+            "color": colHours,
+            "show": true
+        },
+        "Minutes": {
+            "text": "Minutes",
+            "color": colMinutes,
+            "show": true
+        },
+        "Seconds": {
+            "text": "Seconds",
+            "color": colSeconds,
+            "show": true
+        }
+    }
+});
+</script>
 
 </body>
 </html>
